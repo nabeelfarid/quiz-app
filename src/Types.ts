@@ -14,8 +14,8 @@ export type Question = {
 }
 
 export enum QuizState {
-    FirstTime,
+    Awaiting,
     Loading,            
-    Started,
-    Finished
+    Running,
+    Completed
 }
