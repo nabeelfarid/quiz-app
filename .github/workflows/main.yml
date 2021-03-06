@@ -31,13 +31,13 @@ jobs:
           node-version: 12
           
       - name: Install Node Modules
-        run: yarn
+        run: npm install
       
       - name: Build Project
-        run: yarn build
+        run: npm run build
       
       - name: Install Surge
-        run: yarn global add surge
+        run: npm install --g surge
       
       - name: Deploy to Surge
         run: surge ./build https://quizapp.nabeelfarid.surge.sh --token ${{secrets.SURGE_TOKEN}}
