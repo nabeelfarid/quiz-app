@@ -1,4 +1,4 @@
-import { Question } from './Types';
+import { Question } from '../Types';
 
 type QuestionCardProps = {
   question: Question,
@@ -9,11 +9,6 @@ type QuestionCardProps = {
 export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, totalQuestions }) => {
 
   const getButtonColorClass = (buttonAnswer: string) => {
-    
-    console.log('[getButtonColorClass] #', question.no);
-    console.log('chosen answer', question.chosenAnswer);
-    console.log('corect answer', question.correctAnswer);
-    console.log('button answer', buttonAnswer);
     
     if (question.chosenAnswer) {
       if (question.chosenAnswer === buttonAnswer) {
@@ -31,10 +26,16 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, 
     return 'btn-primary'
   }
 
-  return (
-    <div className='border shadow p-4 '>
+const getEmoji = () => {
+  if (question.chosenAnswer){
+    return question.chosenAnswer === question.correctAnswer? '✅ ': '❌'
+  }
+}
 
-      <h5>Question: {question.no + 1} / {totalQuestions} </h5>
+  return (
+    <div className='p-4 '>
+
+      <h5>Question: {question.no + 1} / {totalQuestions} {getEmoji()} </h5>
 
       <div className="mb-2" dangerouslySetInnerHTML={{ __html: question.text }}></div>
 
@@ -54,3 +55,5 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, 
     </div>
   );
 };
+
+
