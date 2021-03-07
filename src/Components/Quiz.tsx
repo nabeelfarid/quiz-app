@@ -1,10 +1,10 @@
 import { QuestionCard } from './QuestionCard';
-import { Question } from '../Types';
+import { VmQuestion } from '../Models/ViewModels';
 
 type QuizProps = {
   show: boolean;
   score: number;
-  questions: Question[];
+  questions: VmQuestion[];
   currentQuestionNo: number;
   totalQuestions: number;
   onAnswerHandler: (chosenAnswer: string) => void;

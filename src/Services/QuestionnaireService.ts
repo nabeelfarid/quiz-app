@@ -1,10 +1,11 @@
 import axios from "axios";
-import { Question, DtoQuestion } from "../Types";
+import { VmQuestion } from "../Models/ViewModels";
+import { DtoQuestion } from "../Models/DataTransferObjects";
 
-const GetQuestions = async (noOfQuestions: number): Promise<Question[]> => {
+const GetQuestions = async (noOfQuestions: number): Promise<VmQuestion[]> => {
     let res = await axios.get(`https://opentdb.com/api.php?amount=${noOfQuestions}&type=multiple`);
     console.log('api', res.data.results);
-    let questions = (res.data.results as DtoQuestion[]).map<Question>((question, index) => (
+    let questions = (res.data.results as DtoQuestion[]).map<VmQuestion>((question, index) => (
         {
             text: question.question,
             no: index,

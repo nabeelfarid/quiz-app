@@ -1,11 +1,5 @@
 
-export type DtoQuestion = {
-    question : string;
-    correct_answer : string;
-    incorrect_answers : string []
-}
-
-export type Question = {
+export type VmQuestion = {
     text : string,
     no: number,
     correctAnswer : string,

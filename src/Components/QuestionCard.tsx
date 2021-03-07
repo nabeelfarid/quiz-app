@@ -1,7 +1,7 @@
-import { Question } from '../Types';
+import { VmQuestion } from '../Models/ViewModels';
 
 type QuestionCardProps = {
-  question: Question,
+  question: VmQuestion,
   onAnswer: (chosenAnswer: string) => void,
   totalQuestions: number
 }

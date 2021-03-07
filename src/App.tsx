@@ -7,12 +7,12 @@ import { QuizEnd } from './Components/QuizEnd';
 
 import { useState } from 'react';
 import QuestionnaireService from './Services/QuestionnaireService';
-import { QuizState, Question } from './Types';
+import { QuizState, VmQuestion } from './Models/ViewModels';
 
 const App: React.FC = () => {
 
   const [quizState, setQuizState] = useState(QuizState.Awaiting);
-  const [questions, setQuestions] = useState([] as Question[]);
+  const [questions, setQuestions] = useState([] as VmQuestion[]);
   const [currentQuestionNo, setCurrentQuestionNo] = useState(0);
   const [score, setScore] = useState(0);
 
