@@ -11,5 +11,6 @@ export enum QuizState {
     Awaiting,
     Loading,            
     Running,
-    Completed
+    Completed,
+    Error
 }

@@ -8,6 +8,7 @@ import { QuizEnd } from './Components/QuizEnd';
 import { useState } from 'react';
 import QuestionnaireService from './Services/QuestionnaireService';
 import { QuizState, VmQuestion } from './Models/ViewModels';
+import { ErrorNotification } from './Components/ErrorNotificationProps';
 
 const App: React.FC = () => {
 
@@ -15,18 +16,26 @@ const App: React.FC = () => {
   const [questions, setQuestions] = useState([] as VmQuestion[]);
   const [currentQuestionNo, setCurrentQuestionNo] = useState(0);
   const [score, setScore] = useState(0);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const TOTAL_QUESTIONS = 5;
 
   // No need to use UseEffect as we will prepare the quiz on button click event handler
   async function PrepareNewQuiz() {
-    setQuizState(QuizState.Loading);
-    let questions = await QuestionnaireService.GetQuestions(TOTAL_QUESTIONS);
-    setQuestions(questions);
-    setQuizState(QuizState.Running);
-    setCurrentQuestionNo(0);
-    setScore(0);
+    try {
+      setQuizState(QuizState.Loading);
+      let questions = await QuestionnaireService.GetQuestions(TOTAL_QUESTIONS);
+      setQuestions(questions);
+      setQuizState(QuizState.Running);
+    } catch (error) {
+      console.log(error)
+      setQuizState(QuizState.Error);
+      setErrorMsg(error.message);
 
+    } finally {
+      setCurrentQuestionNo(0);
+      setScore(0);
+    }
   }
 
   const onStartQuizHandler = () => {
@@ -62,7 +71,6 @@ const App: React.FC = () => {
       <div className="container">
 
         <QuizStart disabled={quizState === QuizState.Loading} onStartQuizHandler={onStartQuizHandler} />
-        
         <QuizLoading show={quizState === QuizState.Loading} />
 
         <Quiz
@@ -72,12 +80,14 @@ const App: React.FC = () => {
           currentQuestionNo={currentQuestionNo}
           totalQuestions={TOTAL_QUESTIONS}
           onAnswerHandler={onAnswerHandler}
-          onNextQuestionHandler={onNextQuestionHandler}/>
+          onNextQuestionHandler={onNextQuestionHandler} />
 
         <QuizEnd
           show={quizState === QuizState.Completed}
           score={score}
           totalQuestions={TOTAL_QUESTIONS} />
+
+        <ErrorNotification show={quizState === QuizState.Error} errorMsg={errorMsg} />
 
       </div>
     </>
