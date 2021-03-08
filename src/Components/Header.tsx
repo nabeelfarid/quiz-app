@@ -3,9 +3,9 @@ import reactLogo from '../images/react.svg';
 
 export const Header = () => {
   return (
-    <div className="p-md-3 p-2 mb-4 shadow bg-primary bg-gradient d-flex justify-content-between align-items-center">
+    <div className="p-md-3 p-2 mb-4 shadow bg-dark bg-gradient d-flex justify-content-between align-items-center text-white">
 
-      <div className="text-white">
+      <div className="">
         <h1>Quiz App</h1>
       </div>
 

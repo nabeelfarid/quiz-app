@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Quiz App",
+  "short_name": "QuizApp",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#363A3D",
+  "background_color": "#212529", 
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +22,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

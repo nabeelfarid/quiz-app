@@ -20,7 +20,7 @@ export const Quiz: React.FC<QuizProps> = ({
       {show &&
         <>
           <div className="my-4 d-flex justify-content-center">
-            <div className="border border-info border-4 rounded bg-dark text-white shadow">
+            <div className="border border-warning border-4 rounded bg-dark text-white shadow">
               <div className=" mt-3 text-center">
                 <h4>Score: {score}</h4>
               </div>
