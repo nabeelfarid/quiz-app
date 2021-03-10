@@ -20,9 +20,12 @@ fs.readFile(jsonManifestFile, 'utf8', function (err, data) {
   if (err) {
     return console.log(err);
   }
+  console.log('Inserting Hashed-File-Names...');
   let result = data.replace(/'<HASHED_BUILD_FILES>'/g, hashedFileNames);
   // Also generate a new version number for versioning cache for each build
-  result = result.replace(/<VERSION>/g, new Date().getTime());
+  const versionNo = new Date().getTime();
+  console.log('Inserting Version No:', versionNo);
+  result = result.replace(/<VERSION>/g, versionNo);
   fs.writeFile(jsonManifestFile, result, 'utf8', function (err) {
     if (err) return console.log(err);
   });

@@ -1,3 +1,18 @@
+// Give the service worker access to Firebase Messaging.
+importScripts('https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.2.9/firebase-messaging.js');
+
+firebase.initializeApp({
+    apiKey: "AIzaSyAjpMiUfOWIzoOFGvIfVHsI4AowiUsp_YA",
+    authDomain: "messaging-service-test-7ff87.firebaseapp.com",
+    projectId: "messaging-service-test-7ff87",
+    storageBucket: "messaging-service-test-7ff87.appspot.com",
+    messagingSenderId: "429002687019",
+    appId: "1:429002687019:web:554a8e945ef502a46e206e"
+});
+
+const messaging = firebase.messaging();
+
 // A script has been added to build pipeline, in order to create a new version no for app (timestamp)
 // This same app version no will be used for versioning SW Caches.
 // The script will replace the <VERSION> to have a new corresponding cache version for each new intance of sw
@@ -6,8 +21,10 @@ const CACHE_NAME = 'quiz-app-<VERSION>';
 const APP_SHELL_FILES = [
     '/',
     '/logo192.png',
+    '/logo512.png',
     '/favicon.ico',
-    // '<HASHED_BUILD_FILES>'
+    '/manifest.json',
+    '<HASHED_BUILD_FILES>'
 ];
 
 // We will cache App Shell files in the install event, which gets fired only once
@@ -37,12 +54,13 @@ self.addEventListener('fetch', function (event) {
 
     // skip the request, if it is for any external resource
     if (!event.request.url.startsWith(self.registration.scope)) return;
-    event.respondWith(async () => {
+    
+    const FetchResponse = async () => {
         try {
             // serve the request from the version of the cache, 
             // that corresponds to the active version of SW
             const cache = await caches.open(CACHE_NAME);
-            const response = await cache.match(event.request);
+            let response = await cache.match(event.request);
             // if cache has it, return response
             if (response) {
                 console.log('Found ', event.request.url, ' in cache', CACHE_NAME);
@@ -58,13 +76,14 @@ self.addEventListener('fetch', function (event) {
             }
             //cache the response before serving it
             console.log('Caching Network request', event.request.url, ' in cache', CACHE_NAME);
-            cache.put(event.request.url, response_1.clone());
+            cache.put(event.request.url, response.clone());
             return response;
         } catch (error) {
             console.log('SW Fetch Error:', error);
             throw error;
         }
-    })
+    };
+    event.respondWith(FetchResponse())
 });
 
 // Once a new service worker has installed 
@@ -74,18 +93,20 @@ self.addEventListener('fetch', function (event) {
 // it's a good time to delete unused caches.
 self.addEventListener('activate', (event) => {
     console.log('SW Activating ', event);
-
-    event.waitUntil(async () => {
+    const RemoveAllUnusedCaches = async () => {
         const cacheNames = await caches.keys();
+        console.log('Caches:', cacheNames);
         Promise.all(
             cacheNames.filter((cacheName) => {
                 // filter out all previous unused caches that are not in use anymore;
-                cacheName !== CACHE_NAME
+                return cacheName !== CACHE_NAME;
             }).map(async (cacheName) => {
                 // delte all these unused caches
-                console.log('deleting cache', cacheName);
+                console.log('Deleting cache', cacheName);
                 await caches.delete(cacheName);
             })
         );
-    })
+    };
+    event.waitUntil(RemoveAllUnusedCaches())
+    console.log('SW Activated');
 });
