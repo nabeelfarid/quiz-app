@@ -1,4 +1,3 @@
-// import { InitFirebaseMessaging } from "./Services/FirebaseMsgService";
 
 export const register = async () => {
 
@@ -14,10 +13,6 @@ export const register = async () => {
             console.log('Awaiting SW to be Ready...')
             registration = await navigator.serviceWorker.ready;
             console.log('SW is Ready:', registration)
-
-            // console.log('Initialising FB Messaging...')
-            // const token = await InitFirebaseMessaging(registration)
-            // console.log('FB Messaging Initialised with token')
 
         } catch (error) {
             console.log('An error occurred registering SW:', error);
