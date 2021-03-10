@@ -1,8 +1,13 @@
-const CACHE_NAME = 'quiz-app';
+// A script has been added to build pipeline, in order to create a new version no for app (timestamp)
+// This same app version no will be used for versioning SW Caches.
+// The script will replace the <VERSION> to have a new corresponding cache version for each new intance of sw
+// The script will also replace the <HASHED_BUILD_FILES> will the list of all the newly generated app shell hased files
+const CACHE_NAME = 'quiz-app-<VERSION>';
 const APP_SHELL_FILES = [
     '/',
     '/logo192.png',
     '/favicon.ico',
+    // '<HASHED_BUILD_FILES>'
 ];
 
 // We will cache App Shell files in the install event, which gets fired only once
@@ -34,7 +39,8 @@ self.addEventListener('fetch', function (event) {
     if (!event.request.url.startsWith(self.registration.scope)) return;
     event.respondWith(async () => {
         try {
-            // serve the request from the cache
+            // serve the request from the version of the cache, 
+            // that corresponds to the active version of SW
             const cache = await caches.open(CACHE_NAME);
             const response = await cache.match(event.request);
             // if cache has it, return response
@@ -61,3 +67,25 @@ self.addEventListener('fetch', function (event) {
     })
 });
 
+// Once a new service worker has installed 
+// and none of the previous versions are being used, 
+// the new one activates, and the activate event fires. 
+// Because the old version is out of the way, 
+// it's a good time to delete unused caches.
+self.addEventListener('activate', (event) => {
+    console.log('SW Activating ', event);
+
+    event.waitUntil(async () => {
+        const cacheNames = await caches.keys();
+        Promise.all(
+            cacheNames.filter((cacheName) => {
+                // filter out all previous unused caches that are not in use anymore;
+                cacheName !== CACHE_NAME
+            }).map(async (cacheName) => {
+                // delte all these unused caches
+                console.log('deleting cache', cacheName);
+                await caches.delete(cacheName);
+            })
+        );
+    })
+});
