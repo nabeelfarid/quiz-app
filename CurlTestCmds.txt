@@ -6,9 +6,5 @@ Replace the <TOKEN> with the token you see in the browser console
 
 notification sample:
 
-curl --header "Content-type: application/json" --header "Authorization:key=AAAAY-KNgis:APA91bEULHdJ1_gOoyuSi3HpQD9ypetoEs2UtgSPtv6c6OjmYaztzpcx6l8ws3lkkdnPOuAH3DXIx09PkI97xTHDDmYBUPLsLgSdXeomvBPEuRmB3d_bMwLguR3gq3s6a9aATIMGebw6" -d '{ "notification": { "title": "Hello","body": "This is Awesome ", "icon": "/favicon.ico"},"to" : "fiGxzGhblI7D1Y-YW39g7H:APA91bHDcrKGlrP38aRimKfjJjyBil5iNCws-ySw3m9CnqTTe3JvT7nQ_oToqpvEL5GYg3bqx0MuLXSiVyArPk_l06_nHhNJXFJIJxLEOa_dTsGVoWobui6jSXXWJUlo1oxll-i5_pkw"}' https://fcm.googleapis.com/fcm/send
+curl --header "Content-type: application/json" --header "Authorization:key=AAAAY-KNgis:APA91bEULHdJ1_gOoyuSi3HpQD9ypetoEs2UtgSPtv6c6OjmYaztzpcx6l8ws3lkkdnPOuAH3DXIx09PkI97xTHDDmYBUPLsLgSdXeomvBPEuRmB3d_bMwLguR3gq3s6a9aATIMGebw6" -d '{ "notification": { "title": "Hello","body": "This is Awesome", "icon": "/favicon.ico"},"to" : "f<TOKEN>"}' https://fcm.googleapis.com/fcm/send
 
-
-data sample:
-
-curl --header "Content-type: application/json" --header "Authorization:key=AAAAY-KNgis:APA91bEULHdJ1_gOoyuSi3HpQD9ypetoEs2UtgSPtv6c6OjmYaztzpcx6l8ws3lkkdnPOuAH3DXIx09PkI97xTHDDmYBUPLsLgSdXeomvBPEuRmB3d_bMwLguR3gq3s6a9aATIMGebw6" -d '{ "data": { "status": "Yes it works"},"to" : "<TOKEN>"}' https://fcm.googleapis.com/fcm/send

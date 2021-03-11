@@ -9,6 +9,7 @@ import { useState } from 'react';
 import QuestionnaireService from './Services/QuestionnaireService';
 import { QuizState, VmQuestion } from './Models/ViewModels';
 import { ErrorNotification } from './Components/ErrorNotificationProps';
+import { Notification } from './Components/Notification';
 
 const App: React.FC = () => {
 
@@ -88,6 +89,8 @@ const App: React.FC = () => {
           totalQuestions={TOTAL_QUESTIONS} />
 
         <ErrorNotification show={quizState === QuizState.Error} errorMsg={errorMsg} />
+
+        <Notification/>
 
       </div>
     </>

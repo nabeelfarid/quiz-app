@@ -3,7 +3,7 @@ import { InitFirebaseMessaging } from "./Services/FirebaseMsgService";
 export const register = async () => {
 
     if ("serviceWorker" in navigator) {
-        const publicUrl = `${process.env.PUBLIC_URL}/sw.js`;
+        const publicUrl = '/sw.js';
         console.log('SW url to be registered:', publicUrl)
 
         try {

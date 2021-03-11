@@ -11,7 +11,7 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig);
-const messaging = firebase.messaging()
+export const messaging = firebase.messaging()
 
 export const InitFirebaseMessaging = async (registration : ServiceWorkerRegistration) => {
     try {
@@ -28,6 +28,4 @@ export const InitFirebaseMessaging = async (registration : ServiceWorkerRegistra
     }
 }
 
-messaging.onMessage((payload) => {
-    console.log('onMessage received', payload);
-})
+
