@@ -10,6 +10,7 @@ import QuestionnaireService from './Services/QuestionnaireService';
 import { QuizState, VmQuestion } from './Models/ViewModels';
 import { ErrorNotification } from './Components/ErrorNotificationProps';
 import { Notification } from './Components/Notification';
+import { CliCommand } from './Components/CliCommand';
 
 const App: React.FC = () => {
 
@@ -90,7 +91,9 @@ const App: React.FC = () => {
 
         <ErrorNotification show={quizState === QuizState.Error} errorMsg={errorMsg} />
 
-        <Notification/>
+        <CliCommand />
+
+        <Notification />
 
       </div>
     </>

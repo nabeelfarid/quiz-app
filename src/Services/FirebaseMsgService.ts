@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const messaging = firebase.messaging()
 
-export const InitFirebaseMessaging = async (registration : ServiceWorkerRegistration) => {
+export const GetToken = async (registration : ServiceWorkerRegistration) => {
     try {
         const token = await messaging.getToken({
             vapidKey: 'BJs87dcoo3tADXYtDqyjCgzhpVxNMJBTltkpfI1K2iTo-eyZhSJm_H8TeplO8kNFi2Vbc92wc2InP9kbCLCeqPY',

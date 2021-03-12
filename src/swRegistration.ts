@@ -1,4 +1,4 @@
-import { InitFirebaseMessaging } from "./Services/FirebaseMsgService";
+import { GetToken } from "./Services/FirebaseMsgService";
 
 export const register = async () => {
 
@@ -14,10 +14,14 @@ export const register = async () => {
             console.log('Awaiting SW to be Ready...')
             registration = await navigator.serviceWorker.ready;
             console.log('SW is Ready:', registration)
+            
+            console.log('Retrieving FB Messaging Token...');
+            const token = await GetToken(registration);
+            console.log('FB Messaging Token retrieved')
 
-            console.log('Initialising FB Messaging...')
-            const token = await InitFirebaseMessaging(registration)
-            console.log('FB Messaging Initialised with token')
+            console.log('Send the token to the page to display it')
+            const broadcast = new BroadcastChannel('quiz-app');
+            broadcast.postMessage({ type: 'TOKEN', token: token });
 
         } catch (error) {
             console.log('An error occurred registering SW:', error);
