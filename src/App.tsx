@@ -8,7 +8,7 @@ import { QuizEnd } from './Components/QuizEnd';
 import { useState } from 'react';
 import QuestionnaireService from './Services/QuestionnaireService';
 import { QuizState, VmQuestion } from './Models/ViewModels';
-import { ErrorNotification } from './Components/ErrorNotificationProps';
+import { ErrorNotification } from './Components/ErrorNotification';
 import { Notification } from './Components/Notification';
 import { CliCommand } from './Components/CliCommand';
 

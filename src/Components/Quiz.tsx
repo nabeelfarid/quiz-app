@@ -19,7 +19,7 @@ export const Quiz: React.FC<QuizProps> = ({
     <>
       {show &&
         <>
-          <div className="my-4 d-flex justify-content-center">
+          <div className="my-4 d-flex flex-column align-items-center">
             <div className="border border-warning border-4 rounded bg-dark text-white shadow">
               <div className=" mt-3 text-center">
                 <h4>Score: {score}</h4>
@@ -29,10 +29,7 @@ export const Quiz: React.FC<QuizProps> = ({
                 onAnswer={onAnswerHandler}
                 totalQuestions={totalQuestions} />
             </div>
-          </div>
-
-          <div className='mt-4 text-center'>
-            <button className='btn btn-warning btn-lg' disabled={!(!!questions[currentQuestionNo].chosenAnswer)}
+            <button className='mt-4 btn btn-warning btn-lg border border-4 rounded-pill' disabled={!(!!questions[currentQuestionNo].chosenAnswer)}
               onClick={onNextQuestionHandler}>Next Question</button>
           </div>
         </>}
