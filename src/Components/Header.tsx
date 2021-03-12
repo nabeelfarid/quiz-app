@@ -1,5 +1,6 @@
 import tsLogo from '../images/ts-logo.svg';
 import reactLogo from '../images/react.svg';
+import firebaseLogo from '../images/firebase.png'
 
 export const Header = () => {
   return (
@@ -10,6 +11,11 @@ export const Header = () => {
       </div>
 
       <div className='row gx-3 align-items-center'>
+      <div className="col">
+          <a title="Firebase" className="" href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer">
+            <img src={firebaseLogo} alt='Firebase' height={25} width={25}></img>
+          </a>
+        </div>
         <div className="col">
           <a title="React JS" className="" href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">
             <img src={reactLogo} alt='React JS' height={25} width={25}></img>
