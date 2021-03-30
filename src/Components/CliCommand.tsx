@@ -14,7 +14,7 @@ export const CliCommand: React.FC = () => {
         RefreshCliCmd(event.data.token);
       }
     });
-  }, []);
+  }, [broadcast]);
 
   const RefreshCliCmd = (token: string) => {
     setCliCmd(`curl --header "Content-type: application/json" --header "Authorization:key=AAAAY-KNgis:APA91bEULHdJ1_gOoyuSi3HpQD9ypetoEs2UtgSPtv6c6OjmYaztzpcx6l8ws3lkkdnPOuAH3DXIx09PkI97xTHDDmYBUPLsLgSdXeomvBPEuRmB3d_bMwLguR3gq3s6a9aATIMGebw6" -d '{ "notification": { "title": "Hello","body": "This is Awesome", "icon": "/favicon.ico"},"to" : "${token}"}' https://fcm.googleapis.com/fcm/send`);
