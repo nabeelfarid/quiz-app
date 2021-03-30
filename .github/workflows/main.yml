@@ -6,9 +6,9 @@ name: Quiz App
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ quiz-app-pwa ]
   pull_request:
-    branches: [ main ]
+    branches: [ quiz-app-pwa ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,5 +40,5 @@ jobs:
         run: npm install --g surge
       
       - name: Deploy to Surge
-        run: surge ./build https://quizapp.nabeelfarid.surge.sh --token ${{secrets.SURGE_TOKEN}}
+        run: surge ./build https://quizapp-pwa.nabeelfarid.surge.sh --token ${{secrets.SURGE_TOKEN}}
     
