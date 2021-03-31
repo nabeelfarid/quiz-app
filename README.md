@@ -1,4 +1,4 @@
-QUIZ App URL: https://quizapp.nabeelfarid.surge.sh/
+QUIZ App PWA URL: https://quizapp-pwa.herokuapp.com/
 
 # Getting Started with Create React App
 

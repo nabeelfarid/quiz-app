@@ -37,7 +37,7 @@ export const Header = () => {
           </a>
         </div>
         <div className="col">
-          <a title="Github Repo" className="text-white" href="https://github.com/nabeelfarid/quiz-app" target="_blank" rel="noopener noreferrer">
+          <a title="Github Repo" className="text-white" href="https://github.com/nabeelfarid/quiz-app/tree/quiz-app-pwa" target="_blank" rel="noopener noreferrer">
             <i className="bi bi-github" style={{ fontSize: "1.5rem" }}></i>
           </a>
         </div>
