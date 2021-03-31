@@ -15,21 +15,17 @@ hashedFileNames = fileNames.map((fileName) => {
 console.log('Updating sw.js to include newly build hashed-named files for caching App shell...');
 
 let fs = require('fs')
-let jsonManifestFile = './build/sw.js'
-fs.readFile(jsonManifestFile, 'utf8', function (err, data) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log('Inserting Hashed-File-Names...');
-  let result = data.replace(/'<HASHED_BUILD_FILES>'/g, hashedFileNames);
-  // Also generate a new version number for versioning cache for each build
-  const versionNo = new Date().getTime();
-  console.log('Inserting Version No:', versionNo);
-  result = result.replace(/<VERSION>/g, versionNo);
-  fs.writeFile(jsonManifestFile, result, 'utf8', function (err) {
-    if (err) return console.log(err);
-  });
-});
+let swFile = './build/sw.js'
+
+let data    = fs.readFileSync(swFile, "utf8")
+
+console.log('Inserting Hashed-File-Names...');
+let result = data.replace(/'<HASHED_BUILD_FILES>'/g, hashedFileNames);
+// Also generate a new version number for versioning cache for each build
+const versionNo = new Date().getTime();
+console.log('Inserting Version No:', versionNo);
+result = result.replace(/<VERSION>/g, versionNo);
+fs.writeFileSync(swFile, result, 'utf8')
 
 console.log('Update Completed.')
 

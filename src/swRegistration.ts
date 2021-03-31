@@ -4,7 +4,6 @@ export const register = async () => {
 
     if ("serviceWorker" in navigator) {
         const publicUrl = `${process.env.PUBLIC_URL}/sw.js`;
-    	console.log(publicUrl);
 	    console.log("SW url to be registered:", publicUrl);
 
         try {
